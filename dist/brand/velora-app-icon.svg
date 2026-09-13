@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">Icono de la aplicación Velora</title>
+  <desc id="desc">Símbolo de Velora sobre fondo azul petróleo.</desc>
+  <rect width="512" height="512" rx="116" fill="#164E63"/>
+  <path fill="#FFFFFF" d="M104 148c34 0 58 17 77 50l78 137-38 67c-20-7-36-24-50-50L86 202c-18-33-8-54 18-54Z"/>
+  <path fill="#22C1DC" d="M407 148c27 0 35 22 17 54l-84 150c-31 56-73 65-119 50l38-67c10 15 20 22 31 22 13 0 24-9 34-27l77-132c18-33 36-50 62-50h-56Z"/>
+  <path fill="#67E8F9" d="M169 193c24-35 51-52 84-52h64l-58 111-38 67-42-73c-14-24-17-37-10-53Z" opacity=".92"/>
+</svg>

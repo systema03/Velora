@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import type { ActivityItem, DocItem, TaskItem, SyncState } from '@/types';
 import { demoActivities, demoDocuments, demoTasks } from '@/data/demo';
 
@@ -32,19 +32,13 @@ function setState(updater: (prev: VeloraState) => VeloraState) {
 export function useVeloraStore() {
   const [, forceRender] = useState(0);
 
-  const subscribe = useCallback(() => {
+  useEffect(() => {
     const listener = () => forceRender((n) => n + 1);
     listeners.add(listener);
     return () => {
       listeners.delete(listener);
     };
   }, []);
-
-  // Subscribe on mount
-  useState(() => {
-    subscribe();
-    return undefined;
-  });
 
   const triggerSync = useCallback(() => {
     setState((prev) => ({ ...prev, syncState: 'syncing' }));
@@ -86,10 +80,11 @@ export function useVeloraStore() {
       tasks: prev.tasks.map((t) => {
         if (t.id !== id) return t;
         const completed = !t.completed;
+        const todayStr = new Date().toISOString().slice(0, 10);
         return {
           ...t,
           completed,
-          section: completed ? 'completed' : t.dueDate < new Date().toISOString().slice(0, 10) ? 'today' : 'today',
+          section: completed ? 'completed' : t.dueDate <= todayStr ? 'today' : 'upcoming',
         };
       }),
     }));

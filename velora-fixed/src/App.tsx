@@ -34,12 +34,14 @@ function AppRoutes() {
     switch (action) {
       case 'new_task':
       case 'new_reminder':
-        navigate('/pending');
+        navigate('/pending', { state: { openTaskForm: true } });
         break;
       case 'scan_document':
-      case 'register_receipt':
       case 'import_file':
-        navigate('/documents');
+        navigate('/documents', { state: { docMode: 'document' } });
+        break;
+      case 'register_receipt':
+        navigate('/documents', { state: { docMode: 'receipt' } });
         break;
     }
   };

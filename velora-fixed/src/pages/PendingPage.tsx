@@ -1,4 +1,5 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { CheckSquare, Inbox, AlertCircle } from 'lucide-react';
 import { useVeloraStore } from '@/store/useStore';
 import { FilterChips } from '@/components/ui/FilterChips';
@@ -34,6 +35,14 @@ export function PendingPage() {
   const [filter, setFilter] = useState<Filter>('all');
   const [formOpen, setFormOpen] = useState(false);
   const [editingTask, setEditingTask] = useState<TaskItem | null>(null);
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.state?.openTaskForm) {
+      setEditingTask(null);
+      setFormOpen(true);
+    }
+  }, [location.state]);
 
   const visibleSections = useMemo(() => {
     if (filter === 'all') return allSections;

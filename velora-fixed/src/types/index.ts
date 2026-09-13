@@ -28,6 +28,8 @@ export interface DocItem {
   kind: DocKind;
   date: string;
   size: string;
+  amount?: number;
+  description?: string;
 }
 
 export type TaskPriority = 'low' | 'medium' | 'high';

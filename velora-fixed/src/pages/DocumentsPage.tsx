@@ -1,9 +1,11 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { FileText, FilePlus, FileSearch } from 'lucide-react';
 import { useVeloraStore } from '@/store/useStore';
 import { SearchField } from '@/components/ui/SearchField';
 import { FilterChips } from '@/components/ui/FilterChips';
 import { EmptyState } from '@/components/ui/EmptyState';
+import { DocumentForm } from '@/components/documents/DocumentForm';
 import { formatDate } from '@/lib/format';
 import type { DocKind } from '@/types';
 
@@ -18,9 +20,17 @@ const categoryLabels: Record<string, string> = {
 };
 
 export function DocumentsPage() {
-  const { documents } = useVeloraStore();
+  const { documents, addDocument } = useVeloraStore();
   const [query, setQuery] = useState('');
   const [filter, setFilter] = useState<Filter>('all');
+  const [formMode, setFormMode] = useState<'document' | 'receipt' | null>(null);
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.state?.docMode) {
+      setFormMode(location.state.docMode);
+    }
+  }, [location.state]);
 
   const filtered = useMemo(() => {
     return documents.filter((doc) => {
@@ -83,6 +93,14 @@ export function DocumentsPage() {
                     <span className="text-xs text-ink-subtle tabular-nums">
                       {doc.size}
                     </span>
+                    {doc.amount != null && (
+                      <>
+                        <span className="text-xs text-ink-subtle">·</span>
+                        <span className="text-xs font-medium text-teal-600 tabular-nums">
+                          {doc.amount.toLocaleString('es-ES', { style: 'currency', currency: 'EUR' })}
+                        </span>
+                      </>
+                    )}
                   </div>
                 </div>
               </li>
@@ -93,13 +111,19 @@ export function DocumentsPage() {
 
       <div className="px-4 sm:px-6 pt-4 pb-4">
         <button
-          onClick={() => {}}
+          onClick={() => setFormMode('document')}
           className="w-full flex items-center justify-center gap-2 py-3 rounded-xl border-2 border-dashed border-gray-200 text-ink-muted hover:border-petroleum-300 hover:text-petroleum-700 transition-colors touch-target"
         >
           <FilePlus className="w-5 h-5" />
           <span className="text-sm font-medium">Agregar documento</span>
         </button>
       </div>
+
+      <DocumentForm
+        mode={formMode}
+        onClose={() => setFormMode(null)}
+        onSubmit={addDocument}
+      />
     </div>
   );
 }

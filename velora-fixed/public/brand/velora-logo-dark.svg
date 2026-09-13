@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 128" role="img" aria-labelledby="title desc">
+  <title id="title">Velora</title>
+  <desc id="desc">Logotipo horizontal de Velora para fondos oscuros.</desc>
+  <g>
+    <path fill="#DFF7FC" d="M14 27c9 0 16 4 21 13l27 48-13 23c-5-2-9-6-12-12L8 47C2 36 5 27 14 27Z"/>
+    <path fill="#22C1DC" d="M114 27c9 0 12 9 6 20L91 99c-6 11-14 16-24 16-7 0-13-2-18-4l13-23c3 5 6 7 10 7 3 0 6-2 9-7l26-48c4-9 9-13 17-13h-10Z"/>
+    <path fill="#67E8F9" d="M37 40c7-10 14-15 24-15h22L62 64 49 87 35 62c-4-8-4-15 2-22Z" opacity=".9"/>
+  </g>
+  <text x="150" y="82" fill="#FFFFFF" font-family="Inter, Arial, sans-serif" font-size="55" font-weight="700" letter-spacing="3">VELORA</text>
+</svg>

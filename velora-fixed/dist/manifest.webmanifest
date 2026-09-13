@@ -1,0 +1,17 @@
+{
+  "name": "Velora",
+  "short_name": "Velora",
+  "description": "Organizador corporativo de documentos, recibos, tareas y recordatorios.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F4F6F8",
+  "theme_color": "#164E63",
+  "icons": [
+    {
+      "src": "/brand/velora-app-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
